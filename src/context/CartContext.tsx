@@ -1,6 +1,64 @@
-import {createContext,useContext,useEffect,useMemo,useState,type ReactNode} from 'react';
-import type {CartItem,Product} from '../types';
-type CartContextType={items:CartItem[];add:(p:Product)=>void;remove:(id:number)=>void;setQty:(id:number,q:number)=>void;clear:()=>void;count:number;subtotal:number};
-const CartContext=createContext<CartContextType|null>(null);
-export function CartProvider({children}:{children:ReactNode}){const [items,setItems]=useState<CartItem[]>(()=>{try{return JSON.parse(localStorage.getItem('freshbasket-cart')||'[]')}catch{return[]}});useEffect(()=>localStorage.setItem('freshbasket-cart',JSON.stringify(items)),[items]);const add=(p:Product)=>setItems(xs=>xs.some(x=>x.id===p.id)?xs.map(x=>x.id===p.id?{...x,quantity:x.quantity+1}:x):[...xs,{...p,quantity:1}]);const remove=(id:number)=>setItems(xs=>xs.filter(x=>x.id!==id));const setQty=(id:number,q:number)=>q<1?remove(id):setItems(xs=>xs.map(x=>x.id===id?{...x,quantity:q}:x));const value=useMemo(()=>({items,add,remove,setQty,clear:()=>setItems([]),count:items.reduce((a,x)=>a+x.quantity,0),subtotal:items.reduce((a,x)=>a+x.quantity*x.price,0)}),[items]);return <CartContext.Provider value={value}>{children}</CartContext.Provider>}
-export const useCart=()=>{const c=useContext(CartContext);if(!c)throw new Error('useCart must be used within CartProvider');return c};
+import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from 'react';
+import type { CartItem, Product } from '../types';
+
+type CartContextType = {
+  items: CartItem[];
+  add: (p: Product) => void;
+  remove: (id: number) => void;
+  setQty: (id: number, q: number) => void;
+  clear: () => void;
+  count: number;
+  subtotal: number;
+};
+
+const CartContext = createContext<CartContextType | null>(null);
+
+export function CartProvider({ children }: { children: ReactNode }) {
+  const [items, setItems] = useState<CartItem[]>(() => {
+    try {
+      return JSON.parse(localStorage.getItem('freshbasket-cart') || '[]');
+    } catch {
+      return [];
+    }
+  });
+
+  useEffect(() => {
+    localStorage.setItem('freshbasket-cart', JSON.stringify(items));
+  }, [items]);
+
+  const add = (p: Product) =>
+    setItems((xs) =>
+      xs.some((x) => x.id === p.id)
+        ? xs.map((x) => (x.id === p.id ? { ...x, quantity: x.quantity + 1 } : x))
+        : [...xs, { ...p, quantity: 1 }]
+    );
+
+  const remove = (id: number) =>
+    setItems((xs) => xs.filter((x) => x.id !== id));
+
+  const setQty = (id: number, q: number) =>
+    q < 1
+      ? remove(id)
+      : setItems((xs) => xs.map((x) => (x.id === id ? { ...x, quantity: q } : x)));
+
+  const value = useMemo(
+    () => ({
+      items,
+      add,
+      remove,
+      setQty,
+      clear: () => setItems([]),
+      count: items.reduce((a, x) => a + x.quantity, 0),
+      subtotal: items.reduce((a, x) => a + x.quantity * x.price, 0),
+    }),
+    [items]
+  );
+
+  return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
+}
+
+export const useCart = () => {
+  const c = useContext(CartContext);
+  if (!c) throw new Error('useCart must be used within CartProvider');
+  return c;
+};
