@@ -1,0 +1,16 @@
+import type {Product} from '../types';
+export const products:Product[]=[
+{id:1,name:'Premium Tomatoes',category:'Vegetables',price:3500,unit:'basket',emoji:'🍅',description:'Firm, ripe tomatoes selected for everyday cooking.',featured:true},
+{id:2,name:'Fresh Bell Peppers',category:'Vegetables',price:2200,unit:'pack',emoji:'🫑',description:'Colourful peppers with a crisp, sweet taste.',featured:true},
+{id:3,name:'Sweet Pineapple',category:'Fruits',price:1800,unit:'piece',emoji:'🍍',description:'Juicy, naturally sweet pineapple.',featured:true},
+{id:4,name:'Banana Bunch',category:'Fruits',price:2400,unit:'bunch',emoji:'🍌',description:'Fresh bananas, ideal for breakfast and snacks.'},
+{id:5,name:'Brown Beans',category:'Pantry',price:4200,unit:'2 kg',emoji:'🫘',description:'Clean, carefully sorted brown beans.'},
+{id:6,name:'Local Rice',category:'Pantry',price:7800,unit:'5 kg',emoji:'🍚',description:'Quality Nigerian rice for family meals.',featured:true},
+{id:7,name:'Fresh Eggs',category:'Dairy & Eggs',price:6500,unit:'crate',emoji:'🥚',description:'A full crate of fresh farm eggs.'},
+{id:8,name:'Whole Chicken',category:'Meat',price:9800,unit:'piece',emoji:'🍗',description:'Cleaned whole chicken, ready to cook.'},
+{id:9,name:'Fresh Catfish',category:'Seafood',price:7200,unit:'kg',emoji:'🐟',description:'Freshly supplied catfish, cleaned on request.'},
+{id:10,name:'Carrots',category:'Vegetables',price:1600,unit:'pack',emoji:'🥕',description:'Crunchy carrots for soups, salads and snacks.'},
+{id:11,name:'Avocado',category:'Fruits',price:1200,unit:'piece',emoji:'🥑',description:'Creamy avocado selected at the right ripeness.'},
+{id:12,name:'Cooking Essentials Box',category:'Bundles',price:18500,unit:'box',emoji:'📦',description:'A convenient assortment of everyday kitchen essentials.'}
+];
+export const categories=[...new Set(products.map(p=>p.category))];
