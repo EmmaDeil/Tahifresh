@@ -1,2 +1,30 @@
-import {Link} from 'react-router-dom';import {useCart} from '../context/CartContext';import type {Product} from '../types';
-export default function ProductCard({p}:{p:Product}){const {add}=useCart();return <article className="product-card"><Link to={'/product/'+p.id} className="product-art"><span>{p.emoji}</span></Link><div className="product-info"><small>{p.category}</small><Link to={'/product/'+p.id}><h3>{p.name}</h3></Link><div className="product-bottom"><p>₦{p.price.toLocaleString()} <small>/ {p.unit}</small></p><button onClick={()=>add(p)}>Add</button></div></div></article>}
+import { Link } from 'react-router-dom';
+import { useCart } from '../context/CartContext';
+import type { Product } from '../types';
+
+export default function ProductCard({ p }: { p: Product }) {
+  const { add } = useCart();
+
+  return (
+    <article className="product-card">
+      <Link to={'/product/' + p.id} className="product-art">
+        <span>{p.emoji}</span>
+      </Link>
+
+      <div className="product-info">
+        <small>{p.category}</small>
+
+        <Link to={'/product/' + p.id}>
+          <h3>{p.name}</h3>
+        </Link>
+
+        <div className="product-bottom">
+          <p>
+            ₦{p.price.toLocaleString()} <small>/ {p.unit}</small>
+          </p>
+          <button onClick={() => add(p)}>Add</button>
+        </div>
+      </div>
+    </article>
+  );
+}
