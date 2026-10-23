@@ -8,7 +8,7 @@ export const products: Product[] = [
     price: 3500,
     unit: 'basket',
     // emoji: '🍅',
-    image: './b1.png',
+    image: '/b1.png',
     description: 'Firm, ripe tomatoes selected for everyday cooking.',
     featured: true,
   },

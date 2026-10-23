@@ -21,8 +21,16 @@ export default function Product() {
 
   return (
     <section className="section product-page">
-      <div className="product-large">{p.image}</div>
+      {/* <div className="product-large">{p.image && <img src={p.image} alt={p.name} loading="lazy" />}</div> */}
 
+      <div className="bg-[#F4F1E1] h-48 rounded-t-md overflow-hidden">
+        <img
+          src={p.image}
+          alt={p.name}
+          className="w-full h-full object-cover"
+          loading="lazy"
+        />
+      </div>
       <div>
         <span className="eyebrow">{p.category}</span>
         <h1>{p.name}</h1>

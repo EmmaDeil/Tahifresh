@@ -16,14 +16,14 @@ const CartContext = createContext<CartContextType | null>(null);
 export function CartProvider({ children }: { children: ReactNode }) {
   const [items, setItems] = useState<CartItem[]>(() => {
     try {
-      return JSON.parse(localStorage.getItem('freshbasket-cart') || '[]');
+      return JSON.parse(localStorage.getItem('tahifresh-cart') || '[]');
     } catch {
       return [];
     }
   });
 
   useEffect(() => {
-    localStorage.setItem('freshbasket-cart', JSON.stringify(items));
+    localStorage.setItem('tahifresh-cart', JSON.stringify(items));
   }, [items]);
 
   const add = (p: Product) =>

@@ -1,18 +1,28 @@
 import { Minus, Plus, Trash2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
+import { useTranslations } from '../context/TranslationContext';
+// 1. Import your user session context
+import { useAuth } from '../context/AuthContext';
 
 export default function Cart() {
   const { items, setQty, remove, subtotal } = useCart();
+  const { name: translations } = useTranslations();
+  // 2. Retrieve the active user profile
+  const { user } = useAuth();
+
+  // 3. Define the display name with a fallback
+  const displayName = user?.firstName ? `${user.firstName}'s` : 'Your';
 
   if (!items.length) {
     return (
       <section className="empty">
         <span>🛒</span>
-        <h1>Your basket is empty</h1>
-        <p>Add fresh groceries to get started.</p>
+        {/* Inject name into empty state */}
+        <h1>{displayName} {translations?.['basket is empty'] || 'basket is empty'}</h1>
+        <p>{translations?.['Add fresh items to get started.']}</p>
         <Link className="btn primary" to="/shop">
-          Start shopping
+          {translations?.['Start shopping']}
         </Link>
       </section>
     );
@@ -21,15 +31,16 @@ export default function Cart() {
   return (
     <section className="section">
       <div className="page-title">
-        <h1>Your basket</h1>
-        <p>Review your items before checkout.</p>
+        {/* Inject name into active state */}
+        <h1>{displayName} {translations?.['basket'] || 'basket'}</h1>
+        <p>{translations?.['Review your items before checkout.']}</p>
       </div>
 
       <div className="cart-layout">
         <div>
           {items.map((x) => (
             <div className="cart-row" key={x.id}>
-              <div className="cart-thumb">{x.emoji}</div>
+              <div className="cart-thumb">{x.image && <img src={x.image} alt={x.name} />}</div>
 
               <div>
                 <b>{x.name}</b>
