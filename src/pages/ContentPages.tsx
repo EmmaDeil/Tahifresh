@@ -71,10 +71,10 @@ export function Contact() {
 
         <aside>
           <h2>Customer support</h2>
-          <p>Email: hello@example.com</p>
-          <p>Phone: +234 000 000 0000</p>
-          <p>Lagos, Nigeria</p>
-          <p>Replace these placeholders with the business's verified contact details.</p>
+          <p>Email: thahiworld@gmail.com</p>
+          <p>Phone: +2348124941707</p>
+          <p>Ikeja, Lagos, Nigeria</p>
+          {/* <p>Replace these placeholders with the business's verified contact details.</p> */}
         </aside>
       </div>
     </section>
@@ -183,8 +183,8 @@ export function Policy({ type }: { type: 'privacy' | 'terms' | 'shipping' }) {
     type === 'privacy'
       ? 'Privacy policy'
       : type === 'terms'
-      ? 'Terms of service'
-      : 'Shipping & returns';
+        ? 'Terms of service'
+        : 'Shipping & returns';
 
   return (
     <section className="content-page legal">

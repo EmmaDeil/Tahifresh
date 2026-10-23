@@ -23,8 +23,8 @@ export default function Shop() {
           sort === 'low'
             ? a.price - b.price
             : sort === 'high'
-            ? b.price - a.price
-            : Number(b.featured) - Number(a.featured)
+              ? b.price - a.price
+              : Number(b.featured) - Number(a.featured)
         ),
     [q, cat, sort]
   );
@@ -38,8 +38,8 @@ export default function Shop() {
   return (
     <section className="section">
       <div className="page-title">
-        <span className="eyebrow">Fresh selection</span>
-        <h1>Shop groceries</h1>
+        <span className="eyebrow">Order your favorites</span>
+        <h1>Shop</h1>
         <p>
           {list.length} products found{q ? ` for "${q}"` : ''}.
         </p>
