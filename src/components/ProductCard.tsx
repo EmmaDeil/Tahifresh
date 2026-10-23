@@ -8,7 +8,7 @@ export default function ProductCard({ p }: { p: Product }) {
   return (
     <article className="product-card">
       <Link to={'/product/' + p.id} className="product-art">
-        <span>{p.emoji}</span>
+        <span>{p.image}</span>
       </Link>
 
       <div className="product-info">

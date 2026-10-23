@@ -34,6 +34,16 @@ export default function Home() {
         </div>
       </section>
 
+      <div className="ticker-container">
+        <div className="ticker-track">
+          {/* Content is duplicated to ensure a seamless infinite scroll */}
+          <span className="ticker-item">🍃 STEP INTO TAHI WORLD 😊 TASTE HAPPINESS</span>
+          <span className="ticker-item">🍃 STEP INTO TAHI WORLD 😊 TASTE HAPPINESS</span>
+          <span className="ticker-item">🍃 STEP INTO TAHI WORLD 😊 TASTE HAPPINESS</span>
+          <span className="ticker-item">🍃 STEP INTO TAHI WORLD 😊 TASTE HAPPINESS</span>
+        </div>
+      </div>
+
       {/* Features strip */}
       <section className="features">
         <div>

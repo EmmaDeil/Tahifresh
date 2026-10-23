@@ -4,7 +4,8 @@ export type Product = {
   category: string;
   price: number;
   unit: string;
-  emoji: string;
+  // emoji: string;
+  image: string;
   description: string;
   featured?: boolean;
 };

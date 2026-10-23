@@ -19,13 +19,13 @@ export default function Layout({ children }: { children: ReactNode }) {
     <>
       {/* Announcement bar */}
       <div className="announcement">
-        fresh groceries across lagos • secure checkout • reliable delivery
+        Don't miss our holiday offer - up to 50% OFF!
       </div>
 
       {/* Header */}
       <header>
         <Link to="/" className="logo">
-          <span>Fresh</span>Basket
+          <span>Tahi</span>Fresh
         </Link>
 
         <button className="menu" onClick={() => setOpen(!open)}>
@@ -73,15 +73,19 @@ export default function Layout({ children }: { children: ReactNode }) {
           <Link className="logo light" to="/">
             <span>Fresh</span>Basket
           </Link>
-          <p>Fresh food and household essentials delivered with care.</p>
+          <p>Welcome to Tahi World</p>
         </div>
 
         <div>
           <h4>Shop</h4>
           <Link to="/shop">All products</Link>
-          <Link to="/shop?category=Fruits">Fruits</Link>
-          <Link to="/shop?category=Vegetables">Vegetables</Link>
+          <Link to="/shop?category=Parfait">Parfait</Link>
+          <Link to="/shop?category=Yogurt">Yogurt</Link>
           <Link to="/shop?category=Bundles">Bundles</Link>
+          <Link to="/shop?category=Zobo">Zobo</Link>
+          <Link to="/shop?category=Waffles">Waffles</Link>
+          <Link to="/shop?category=Banana bread">Banana Bread</Link>
+          <Link to="/shop?category=Pancake">Pancake</Link>
         </div>
 
         <div>
@@ -97,7 +101,7 @@ export default function Layout({ children }: { children: ReactNode }) {
           <Link to="/terms">Terms of service</Link>
         </div>
 
-        <small>© 2026 FreshBasket. Original demonstration storefront.</small>
+        <small>© 2026 Tahi Fresh. Original demonstration storefront.</small>
       </footer>
     </>
   );

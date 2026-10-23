@@ -21,7 +21,7 @@ export default function Product() {
 
   return (
     <section className="section product-page">
-      <div className="product-large">{p.emoji}</div>
+      <div className="product-large">{p.image}</div>
 
       <div>
         <span className="eyebrow">{p.category}</span>
