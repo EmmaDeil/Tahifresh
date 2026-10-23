@@ -7,12 +7,15 @@ import Cart from './pages/Cart';
 import Checkout from './pages/Checkout';
 import { About, Account, Contact, FAQ, Policy, Register } from './pages/ContentPages';
 import { AuthProvider } from './context/AuthContext';
+import { TranslationProvider } from './context/TranslationContext';
+
 
 export default function App() {
   return (
     <AuthProvider>
-      <Layout>
-        <Routes>
+      <TranslationProvider>
+        <Layout>
+          <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/shop" element={<Shop />} />
           <Route path="/product/:id" element={<Product />} />
@@ -35,7 +38,8 @@ export default function App() {
             }
           />
         </Routes>
-      </Layout>
+        </Layout>
+      </TranslationProvider>
     </AuthProvider>
   );
 }
