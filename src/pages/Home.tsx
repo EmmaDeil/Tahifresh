@@ -34,15 +34,6 @@ export default function Home() {
         </div>
       </section>
 
-      <div className="ticker-container">
-        <div className="ticker-track">
-          {/* Content is duplicated to ensure a seamless infinite scroll */}
-          <span className="ticker-item">🍃 STEP INTO TAHI WORLD 😊 TASTE HAPPINESS</span>
-          <span className="ticker-item">🍃 STEP INTO TAHI WORLD 😊 TASTE HAPPINESS</span>
-          <span className="ticker-item">🍃 STEP INTO TAHI WORLD 😊 TASTE HAPPINESS</span>
-          <span className="ticker-item">🍃 STEP INTO TAHI WORLD 😊 TASTE HAPPINESS</span>
-        </div>
-      </div>
 
       {/* Features strip */}
       <section className="features">
@@ -70,6 +61,15 @@ export default function Home() {
       </section>
 
       {/* Categories */}
+      <div className="ticker-container">
+        <div className="ticker-track">
+          {/* Content is duplicated to ensure a seamless infinite scroll */}
+          <span className="ticker-item">🍃 STEP INTO TAHI WORLD 😊 TASTE HAPPINESS</span>
+          <span className="ticker-item">🍃 STEP INTO TAHI WORLD 😊 TASTE HAPPINESS</span>
+          <span className="ticker-item">🍃 STEP INTO TAHI WORLD 😊 TASTE HAPPINESS</span>
+          <span className="ticker-item">🍃 STEP INTO TAHI WORLD 😊 TASTE HAPPINESS</span>
+        </div>
+      </div>
       <section className="section">
         <div className="section-head">
           <div>
