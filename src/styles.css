@@ -61,9 +61,16 @@ header {
     color: #e9843e
 }
 
+.logo-img {
+    height: 40px;
+    margin-right: 8px;
+}
+
 nav {
     display: flex;
-    gap: 22px
+    align-items: center;
+    gap: 22px;
+    margin-left: auto;
 }
 
 nav a {
@@ -72,7 +79,11 @@ nav a {
 }
 
 nav a.active {
-    color: #e36f2d
+    color: #e36f2d;
+    padding: 4px 8px;
+    border-radius: 12px;
+    display: inline-block;
+    border: 1px solid #e36f2d;
 }
 
 .ticker-container {

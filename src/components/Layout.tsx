@@ -25,6 +25,7 @@ export default function Layout({ children }: { children: ReactNode }) {
       {/* Header */}
       <header>
         <Link to="/" className="logo">
+          <img src={`${import.meta.env.BASE_URL}logo.png`} alt="Tahi Fresh" className="logo-img" />
           <span>Tahi</span>Fresh
         </Link>
 

@@ -9,8 +9,9 @@ export default function Home() {
       {/* Hero */}
       <section className="hero">
         <div>
-          <span className="eyebrow">Farm-fresh convenience</span>
-          <h1>Fresh food for better everyday living.</h1>
+          <span className="eyebrow">Tahi-fresh convenience</span>
+          <h1>Crave it,</h1>
+          <h1>Click it</h1>
           <p>
             Shop produce, pantry staples, proteins and curated bundles from one convenient
             storefront.
@@ -26,11 +27,11 @@ export default function Home() {
         </div>
 
         <div className="hero-visual">
-          <span>🥬</span>
-          <span>🍊</span>
-          <span>🥖</span>
-          <span>🥕</span>
-          <strong>Freshness in every basket</strong>
+          <span><img src={`${import.meta.env.BASE_URL}🥬.png`} alt="🥬" /></span>
+          <span><img src={`${import.meta.env.BASE_URL}🍊.png`} alt="🍊" /></span>
+          <span><img src={`${import.meta.env.BASE_URL}🥖.png`} alt="🥖" /></span>
+          <span><img src={`${import.meta.env.BASE_URL}🥕.png`} alt="🥕" /></span>
+          <strong>Freshness in every bite</strong>
         </div>
       </section>
 
