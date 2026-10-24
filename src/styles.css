@@ -16,7 +16,9 @@
 }
 
 body {
-    margin: 0
+    margin: 0;
+    image-rendering: crisp-edges;
+    background-image: url(/public/Gemini_Generated_Image_-4.png);
 }
 
 a {
@@ -705,6 +707,11 @@ select {
 
 footer {
     background: var(--dark);
+    /* background-image: url(/public/Gemini_Generated_Image_-4.png); */
+    /* background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat; */
+    /* background-color: transparent; */
     color: #dfece6;
     padding: 60px 7vw 30px;
     display: grid;
@@ -719,7 +726,8 @@ footer>div {
 }
 
 footer h4 {
-    color: #fff
+    color: #fff;
+    /* color: black; */
 }
 
 footer small {
@@ -730,7 +738,8 @@ footer small {
 }
 
 .light {
-    color: white
+    /* color: white */
+    color: black;
 }
 
 @media(max-width:900px) {
