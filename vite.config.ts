@@ -4,5 +4,6 @@ import react from '@vitejs/plugin-react';
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: 'https://EmmaDeil.github.io/Tahifresh/',
+  // base: 'https://EmmaDeil.github.io/Tahifresh/',
+  base: '/Tahifresh/',
 });
