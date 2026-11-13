@@ -1,8 +1,60 @@
 import { Minus, Plus, ShieldCheck, Truck } from 'lucide-react';
 import { useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
+import styled from 'styled-components';
+import { Button, Empty, Eyebrow, Qty, Section, displayTitle } from '../components/ui';
 import { useCart } from '../context/CartContext';
 import { products } from '../data/products';
+import { media } from '../theme';
+
+const ProductPage = styled(Section)`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 70px;
+  align-items: center;
+
+  ${media.tablet} {
+    grid-template-columns: 1fr;
+  }
+
+  h1 {
+    ${displayTitle}
+
+    ${media.mobile} {
+      font-size: 44px;
+    }
+  }
+`;
+
+const ImageBox = styled.div`
+  background: #f4f1e1;
+  height: 12rem;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+`;
+
+const Price = styled.p`
+  font-size: 28px;
+  font-weight: 700;
+  color: #e36f2d;
+`;
+
+const Assurances = styled.div`
+  margin-top: 25px;
+
+  p {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+`;
 
 export default function Product() {
   const { id } = useParams();
@@ -12,34 +64,27 @@ export default function Product() {
 
   if (!p) {
     return (
-      <section className="empty">
+      <Empty>
         <h1>Product not found</h1>
         <Link to="/shop">Return to shop</Link>
-      </section>
+      </Empty>
     );
   }
 
   return (
-    <section className="section product-page">
-      {/* <div className="product-large">{p.image && <img src={p.image} alt={p.name} loading="lazy" />}</div> */}
-
-      <div className="bg-[#F4F1E1] h-48 rounded-t-md overflow-hidden">
-        <img
-          src={p.image}
-          alt={p.name}
-          className="w-full h-full object-cover"
-          loading="lazy"
-        />
-      </div>
+    <ProductPage>
+      <ImageBox>
+        <img src={p.image} alt={p.name} loading="lazy" />
+      </ImageBox>
       <div>
-        <span className="eyebrow">{p.category}</span>
+        <Eyebrow>{p.category}</Eyebrow>
         <h1>{p.name}</h1>
-        <p className="price">
+        <Price>
           ₦{p.price.toLocaleString()} <small>/ {p.unit}</small>
-        </p>
+        </Price>
         <p>{p.description}</p>
 
-        <div className="qty">
+        <Qty>
           <button onClick={() => setQty(Math.max(1, qty - 1))}>
             <Minus />
           </button>
@@ -47,24 +92,21 @@ export default function Product() {
           <button onClick={() => setQty(qty + 1)}>
             <Plus />
           </button>
-        </div>
+        </Qty>
 
-        <button
-          className="btn primary wide"
-          onClick={() => Array.from({ length: qty }).forEach(() => add(p))}
-        >
+        <Button $wide onClick={() => Array.from({ length: qty }).forEach(() => add(p))}>
           Add {qty} to basket
-        </button>
+        </Button>
 
-        <div className="assurances">
+        <Assurances>
           <p>
             <Truck /> Delivery options shown at checkout
           </p>
           <p>
             <ShieldCheck /> Quality checked before dispatch
           </p>
-        </div>
+        </Assurances>
       </div>
-    </section>
+    </ProductPage>
   );
 }

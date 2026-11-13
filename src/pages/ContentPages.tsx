@@ -1,19 +1,100 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import styled, { css } from 'styled-components';
+import { Button, Eyebrow, Field, FormCard, displayTitle } from '../components/ui';
+import { colors, media } from '../theme';
+
+const ContentPage = styled.section<{ $narrow?: boolean; $legal?: boolean }>`
+  padding: 90px max(8vw, 20px);
+  max-width: ${(p) => (p.$narrow ? '600px' : '1200px')};
+  margin: auto;
+
+  > p {
+    font-size: 18px;
+    line-height: 1.8;
+    max-width: 850px;
+  }
+
+  h1 {
+    ${displayTitle}
+    font-size: 58px;
+
+    ${media.mobile} {
+      font-size: 44px;
+    }
+  }
+
+  ${(p) =>
+    p.$legal &&
+    css`
+      h2 {
+        margin-top: 35px;
+      }
+    `}
+`;
+
+const gridBase = css`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  margin-top: 40px;
+
+  ${media.tablet} {
+    grid-template-columns: 1fr;
+  }
+`;
+
+const ContentGrid = styled.div`
+  ${gridBase}
+
+  article {
+    background: ${colors.cream};
+    padding: 28px;
+    border-radius: 12px;
+  }
+`;
+
+const ContactGrid = styled.div`
+  ${gridBase}
+  grid-template-columns: 1.2fr 0.8fr;
+
+  ${media.tablet} {
+    grid-template-columns: 1fr;
+  }
+`;
+
+const Faq = styled.article`
+  border-bottom: 1px solid #dce3df;
+
+  button {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 22px 0;
+    border: 0;
+    background: none;
+    text-align: left;
+  }
+
+  p {
+    padding-bottom: 18px;
+    color: #56665f;
+  }
+`;
 
 // ─── About ───────────────────────────────────────────────────────────────────
 
 export function About() {
   return (
-    <section className="content-page">
-      <span className="eyebrow">Our story</span>
+    <ContentPage>
+      <Eyebrow>Our story</Eyebrow>
       <h1>Freshness, convenience and dependable service.</h1>
       <p>
         FreshBasket is an original demonstration grocery storefront designed around fast product
         discovery, clear information and a straightforward checkout experience.
       </p>
 
-      <div className="content-grid">
+      <ContentGrid>
         <article>
           <h2>Carefully selected</h2>
           <p>
@@ -35,8 +116,8 @@ export function About() {
             customer-management APIs.
           </p>
         </article>
-      </div>
-    </section>
+      </ContentGrid>
+    </ContentPage>
   );
 }
 
@@ -44,40 +125,39 @@ export function About() {
 
 export function Contact() {
   return (
-    <section className="content-page">
-      <span className="eyebrow">We are here to help</span>
+    <ContentPage>
+      <Eyebrow>We are here to help</Eyebrow>
       <h1>Contact us</h1>
 
-      <div className="contact-grid">
-        <form className="form-card" onSubmit={(e) => e.preventDefault()}>
-          <label>
+      <ContactGrid>
+        <FormCard onSubmit={(e) => e.preventDefault()}>
+          <Field>
             Name
             <input required />
-          </label>
-          <label>
+          </Field>
+          <Field>
             Email
             <input type="email" required />
-          </label>
-          <label>
+          </Field>
+          <Field>
             Subject
             <input required />
-          </label>
-          <label>
+          </Field>
+          <Field>
             Message
             <textarea rows={6} required />
-          </label>
-          <button className="btn primary">Send message</button>
-        </form>
+          </Field>
+          <Button>Send message</Button>
+        </FormCard>
 
         <aside>
           <h2>Customer support</h2>
           <p>Email: thahiworld@gmail.com</p>
           <p>Phone: +2348124941707</p>
           <p>Ikeja, Lagos, Nigeria</p>
-          {/* <p>Replace these placeholders with the business's verified contact details.</p> */}
         </aside>
-      </div>
-    </section>
+      </ContactGrid>
+    </ContentPage>
   );
 }
 
@@ -106,20 +186,20 @@ export function FAQ() {
   const [open, setOpen] = useState(0);
 
   return (
-    <section className="content-page">
-      <span className="eyebrow">Helpful answers</span>
+    <ContentPage>
+      <Eyebrow>Helpful answers</Eyebrow>
       <h1>Frequently asked questions</h1>
 
       {FAQ_ITEMS.map(({ q, a }, i) => (
-        <article className="faq" key={q}>
+        <Faq key={q}>
           <button onClick={() => setOpen(open === i ? -1 : i)}>
             <b>{q}</b>
             <span>{open === i ? '−' : '+'}</span>
           </button>
           {open === i && <p>{a}</p>}
-        </article>
+        </Faq>
       ))}
-    </section>
+    </ContentPage>
   );
 }
 
@@ -127,25 +207,25 @@ export function FAQ() {
 
 export function Account() {
   return (
-    <section className="content-page narrow">
-      <span className="eyebrow">Customer account</span>
+    <ContentPage $narrow>
+      <Eyebrow>Customer account</Eyebrow>
       <h1>Welcome back</h1>
 
-      <form className="form-card" onSubmit={(e) => e.preventDefault()}>
-        <label>
+      <FormCard onSubmit={(e) => e.preventDefault()}>
+        <Field>
           Email
           <input type="email" required />
-        </label>
-        <label>
+        </Field>
+        <Field>
           Password
           <input type="password" required />
-        </label>
-        <button className="btn primary wide">Log in</button>
+        </Field>
+        <Button $wide>Log in</Button>
         <p>
           New customer? <Link to="/register">Create an account</Link>
         </p>
-      </form>
-    </section>
+      </FormCard>
+    </ContentPage>
   );
 }
 
@@ -153,26 +233,26 @@ export function Account() {
 
 export function Register() {
   return (
-    <section className="content-page narrow">
-      <span className="eyebrow">Join us</span>
+    <ContentPage $narrow>
+      <Eyebrow>Join us</Eyebrow>
       <h1>Create your account</h1>
 
-      <form className="form-card" onSubmit={(e) => e.preventDefault()}>
-        <label>
+      <FormCard onSubmit={(e) => e.preventDefault()}>
+        <Field>
           Full name
           <input required />
-        </label>
-        <label>
+        </Field>
+        <Field>
           Email
           <input type="email" required />
-        </label>
-        <label>
+        </Field>
+        <Field>
           Password
           <input type="password" minLength={8} required />
-        </label>
-        <button className="btn primary wide">Create account</button>
-      </form>
-    </section>
+        </Field>
+        <Button $wide>Create account</Button>
+      </FormCard>
+    </ContentPage>
   );
 }
 
@@ -187,7 +267,7 @@ export function Policy({ type }: { type: 'privacy' | 'terms' | 'shipping' }) {
         : 'Shipping & returns';
 
   return (
-    <section className="content-page legal">
+    <ContentPage $legal>
       <h1>{title}</h1>
       <p>Last updated: 29 September 2026</p>
 
@@ -208,6 +288,6 @@ export function Policy({ type }: { type: 'privacy' | 'terms' | 'shipping' }) {
         State applicable delivery areas, fees, timelines, substitutions, cancellations, returns and
         refund conditions clearly.
       </p>
-    </section>
+    </ContentPage>
   );
 }

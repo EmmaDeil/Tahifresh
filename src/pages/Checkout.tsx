@@ -1,6 +1,24 @@
 import { useState } from 'react';
 import { Navigate } from 'react-router-dom';
+import styled from 'styled-components';
+import {
+  Button,
+  Empty,
+  Field,
+  FormCardBox,
+  FormGrid,
+  PageTitle,
+  RadioField,
+  Section,
+  Summary,
+  SummaryTotal,
+  twoColumnLayout,
+} from '../components/ui';
 import { useCart } from '../context/CartContext';
+
+const CheckoutForm = styled.form`
+  ${twoColumnLayout}
+`;
 
 export default function Checkout() {
   const { items, subtotal, clear } = useCart();
@@ -10,46 +28,45 @@ export default function Checkout() {
 
   if (done) {
     return (
-      <section className="empty">
+      <Empty>
         <span>✅</span>
         <h1>Order received</h1>
         <p>Your demonstration order has been created successfully.</p>
-      </section>
+      </Empty>
     );
   }
 
   return (
-    <section className="section">
-      <div className="page-title">
+    <Section>
+      <PageTitle>
         <h1>Checkout</h1>
         <p>Enter your delivery and payment information.</p>
-      </div>
+      </PageTitle>
 
-      <form
-        className="checkout"
+      <CheckoutForm
         onSubmit={(e) => {
           e.preventDefault();
           clear();
           setDone(true);
         }}
       >
-        <div className="form-card">
+        <FormCardBox>
           <h2>Contact &amp; delivery</h2>
 
-          <div className="form-grid">
-            <label>
+          <FormGrid>
+            <Field>
               Full name
               <input required />
-            </label>
-            <label>
+            </Field>
+            <Field>
               Email
               <input required type="email" />
-            </label>
-            <label>
+            </Field>
+            <Field>
               Phone number
               <input required type="tel" />
-            </label>
-            <label>
+            </Field>
+            <Field>
               Delivery area
               <select required>
                 <option value="">Select area</option>
@@ -58,27 +75,27 @@ export default function Checkout() {
                 <option>Lekki</option>
                 <option>Yaba</option>
               </select>
-            </label>
-            <label className="full">
+            </Field>
+            <Field $full>
               Street address
               <input required />
-            </label>
-            <label className="full">
+            </Field>
+            <Field $full>
               Delivery note
               <textarea rows={3} />
-            </label>
-          </div>
+            </Field>
+          </FormGrid>
 
           <h2>Payment</h2>
-          <label className="radio">
+          <RadioField>
             <input type="radio" name="pay" defaultChecked /> Pay securely online
-          </label>
-          <label className="radio">
+          </RadioField>
+          <RadioField>
             <input type="radio" name="pay" /> Bank transfer
-          </label>
-        </div>
+          </RadioField>
+        </FormCardBox>
 
-        <aside className="summary">
+        <Summary>
           <h2>Your order</h2>
           {items.map((x) => (
             <p key={x.id}>
@@ -89,17 +106,17 @@ export default function Checkout() {
             </p>
           ))}
           <hr />
-          <p className="total">
+          <SummaryTotal>
             <span>Total</span>
             <b>₦{subtotal.toLocaleString()}</b>
-          </p>
-          <button className="btn primary wide">Place order</button>
+          </SummaryTotal>
+          <Button $wide>Place order</Button>
           <small>
             This starter uses a demonstration checkout. Connect a payment gateway before
             production.
           </small>
-        </aside>
-      </form>
-    </section>
+        </Summary>
+      </CheckoutForm>
+    </Section>
   );
 }

@@ -1,7 +1,27 @@
 import { useMemo } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import styled from 'styled-components';
 import ProductCard from '../components/ProductCard';
+import { Empty, Eyebrow, PageTitle, ProductGrid, Section } from '../components/ui';
 import { categories, products } from '../data/products';
+import { media } from '../theme';
+
+const Toolbar = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 28px;
+
+  ${media.mobile} {
+    display: grid;
+    gap: 10px;
+  }
+
+  select {
+    padding: 12px 16px;
+    border: 1px solid #ccd5d0;
+    border-radius: 6px;
+  }
+`;
 
 export default function Shop() {
   const [sp, setSp] = useSearchParams();
@@ -36,16 +56,16 @@ export default function Shop() {
   };
 
   return (
-    <section className="section">
-      <div className="page-title">
-        <span className="eyebrow">Order your favorites</span>
+    <Section>
+      <PageTitle>
+        <Eyebrow>Order your favorites</Eyebrow>
         <h1>Shop</h1>
         <p>
           {list.length} products found{q ? ` for "${q}"` : ''}.
         </p>
-      </div>
+      </PageTitle>
 
-      <div className="shop-toolbar">
+      <Toolbar>
         <select value={cat} onChange={(e) => update('category', e.target.value)}>
           <option value="">All categories</option>
           {categories.map((c) => (
@@ -58,20 +78,20 @@ export default function Shop() {
           <option value="low">Price: low to high</option>
           <option value="high">Price: high to low</option>
         </select>
-      </div>
+      </Toolbar>
 
       {list.length ? (
-        <div className="product-grid">
+        <ProductGrid>
           {list.map((p) => (
             <ProductCard key={p.id} p={p} />
           ))}
-        </div>
+        </ProductGrid>
       ) : (
-        <div className="empty">
+        <Empty as="div">
           <h2>No matching products</h2>
           <p>Try another search or category.</p>
-        </div>
+        </Empty>
       )}
-    </section>
+    </Section>
   );
 }

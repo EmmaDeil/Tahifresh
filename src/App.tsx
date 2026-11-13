@@ -1,5 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import Layout from './components/Layout';
+import { Empty } from './components/ui';
 import Home from './pages/Home';
 import Shop from './pages/Shop';
 import Product from './pages/Product';
@@ -32,9 +33,9 @@ export default function App() {
           <Route
             path="*"
             element={
-              <section className="empty">
+              <Empty>
                 <h1>Page not found</h1>
-              </section>
+              </Empty>
             }
           />
         </Routes>
