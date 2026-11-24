@@ -227,10 +227,13 @@ const CategoryLink = styled(Link)`
     background: #eef3db;
   }
 
-  span {
+  img {
     display: block;
-    font-size: 48px;
-    margin-bottom: 10px;
+    width: 90px;
+    height: 90px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin: 0 auto 10px;
   }
 `;
 
@@ -353,9 +356,9 @@ export default function Home() {
         </SectionHead>
 
         <Categories>
-          {categories.map((c, i) => (
+          {categories.map((c) => (
             <CategoryLink to={'/shop?category=' + encodeURIComponent(c)} key={c}>
-              <span>{['🥬', '🍓', '🫘', '🥛', '🍗', '🐟', '📦'][i]}</span>
+              <img src={products.find((p) => p.category === c)?.image} alt={c} loading="lazy" />
               <b>{c}</b>
             </CategoryLink>
           ))}
