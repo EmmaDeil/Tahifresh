@@ -12,7 +12,7 @@ import {
   displayTitle,
 } from '../components/ui';
 import ProductCard from '../components/ProductCard';
-import { categories, products } from '../data/products';
+import { categories, categoryImages, products } from '../data/products';
 import { colors, media } from '../theme';
 
 const orbit = keyframes`
@@ -358,7 +358,7 @@ export default function Home() {
         <Categories>
           {categories.map((c) => (
             <CategoryLink to={'/shop?category=' + encodeURIComponent(c)} key={c}>
-              <img src={products.find((p) => p.category === c)?.image} alt={c} loading="lazy" />
+              <img src={categoryImages[c]} alt={c} loading="lazy" />
               <b>{c}</b>
             </CategoryLink>
           ))}

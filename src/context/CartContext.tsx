@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from 'react';
+import { products } from '../data/products';
 import type { CartItem, Product } from '../types';
 
 type CartContextType = {
@@ -16,7 +17,13 @@ const CartContext = createContext<CartContextType | null>(null);
 export function CartProvider({ children }: { children: ReactNode }) {
   const [items, setItems] = useState<CartItem[]>(() => {
     try {
-      return JSON.parse(localStorage.getItem('tahifresh-cart') || '[]');
+      const saved: CartItem[] = JSON.parse(localStorage.getItem('tahifresh-cart') || '[]');
+      // Re-sync name/price/etc. with current catalogue and drop unknown or invalid items
+      return saved.flatMap((s) => {
+        const p = products.find((x) => x.id === s.id);
+        const quantity = Math.floor(Number(s.quantity));
+        return p && quantity >= 1 ? [{ ...p, quantity }] : [];
+      });
     } catch {
       return [];
     }

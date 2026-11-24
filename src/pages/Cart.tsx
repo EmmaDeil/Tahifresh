@@ -20,6 +20,13 @@ const CartLayout = styled.div`
   ${twoColumnLayout}
 `;
 
+const CartItems = styled.div`
+  background: #fff;
+  border-radius: 12px;
+  padding: 4px 22px;
+  height: max-content;
+`;
+
 const CartRow = styled.div`
   display: grid;
   grid-template-columns: 80px 1fr auto 120px 40px;
@@ -100,7 +107,7 @@ export default function Cart() {
       </PageTitle>
 
       <CartLayout>
-        <div>
+        <CartItems>
           {items.map((x) => (
             <CartRow key={x.id}>
               <CartThumb>{x.image && <img src={x.image} alt={x.name} />}</CartThumb>
@@ -127,7 +134,7 @@ export default function Cart() {
               </IconButton>
             </CartRow>
           ))}
-        </div>
+        </CartItems>
 
         <Summary>
           <h2>Order summary</h2>
@@ -146,6 +153,9 @@ export default function Cart() {
           </SummaryTotal>
           <ButtonLink $wide to="/checkout">
             Proceed to checkout
+          </ButtonLink>
+          <ButtonLink $wide $variant="secondary" to="/shop" style={{ marginTop: 12 }}>
+            Back to shop
           </ButtonLink>
         </Summary>
       </CartLayout>

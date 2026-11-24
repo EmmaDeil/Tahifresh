@@ -30,7 +30,7 @@ const Header = styled.header`
   }
 `;
 
-const Logo = styled(Link)<{ $light?: boolean }>`
+const Logo = styled(Link) <{ $light?: boolean }>`
   font: bold 24px 'Playfair Display';
   white-space: nowrap;
   ${(p) => p.$light && 'color: black;'}
@@ -79,11 +79,18 @@ const Nav = styled.nav<{ $open: boolean }>`
     display: ${(p) => (p.$open ? 'grid' : 'none')};
     position: absolute;
     top: 78px;
-    left: 0;
     right: 0;
+    left: auto;
+    width: 180px;
+    gap: 14px;
     background: #fff;
-    padding: 25px;
+    padding: 20px;
+    border-radius: 0 0 12px 12px;
     box-shadow: 0 12px 20px #0001;
+
+    a.active {
+      justify-self: start;
+    }
   }
 `;
 

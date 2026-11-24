@@ -1,5 +1,8 @@
 import type { Product } from '../types';
 
+// import.meta.env is undefined when this file is loaded by the Node order server
+const BASE = import.meta.env?.BASE_URL ?? '/';
+
 export const products: Product[] = [
   {
     id: 1,
@@ -8,7 +11,7 @@ export const products: Product[] = [
     price: 3500,
     unit: 'basket',
     // emoji: '🍅',
-    image: `${import.meta.env.BASE_URL}b1.png`,
+    image: `${BASE}b1.png`,
     description: 'Firm, ripe tomatoes selected for everyday cooking.',
     featured: true,
   },
@@ -19,7 +22,7 @@ export const products: Product[] = [
     price: 2200,
     unit: 'pack',
     // emoji: '🫑',
-    image: `${import.meta.env.BASE_URL}p1.png`,
+    image: `${BASE}p1.png`,
     description: 'Colourful peppers with a crisp, sweet taste.',
     featured: true,
   },
@@ -30,7 +33,7 @@ export const products: Product[] = [
     price: 1800,
     unit: 'piece',
     // emoji: '🍍',
-    image: `${import.meta.env.BASE_URL}p2.png`,
+    image: `${BASE}p2.png`,
     description: 'Juicy, naturally sweet pineapple.',
     featured: true,
   },
@@ -41,7 +44,7 @@ export const products: Product[] = [
     price: 2400,
     unit: 'bunch',
     // emoji: '🍌',
-    image: `${import.meta.env.BASE_URL}y1.png`,
+    image: `${BASE}y1.png`,
     description: 'Fresh bananas, ideal for breakfast and snacks.',
   },
   {
@@ -52,7 +55,7 @@ export const products: Product[] = [
     unit: '2 kg',
     // emoji: '🫘',
     featured: true,
-    image: `${import.meta.env.BASE_URL}z1.png`,
+    image: `${BASE}z1.png`,
     description: 'Clean, carefully sorted brown beans.',
   },
   {
@@ -62,7 +65,7 @@ export const products: Product[] = [
     price: 7800,
     unit: '5 kg',
     // emoji: '🍚',
-    image: `${import.meta.env.BASE_URL}p3.png`,
+    image: `${BASE}p3.png`,
     description: 'Quality Nigerian rice for family meals.',
     featured: true,
   },
@@ -73,7 +76,7 @@ export const products: Product[] = [
     price: 6500,
     unit: 'crate',
     // emoji: '🥚',
-    image: `${import.meta.env.BASE_URL}b1.png`,
+    image: `${BASE}b1.png`,
     description: 'A full crate of fresh farm eggs.',
   },
   {
@@ -83,7 +86,7 @@ export const products: Product[] = [
     price: 9800,
     unit: 'piece',
     // emoji: '🍗',
-    image: `${import.meta.env.BASE_URL}j1.jpg`,
+    image: `${BASE}j1.jpg`,
     description: 'Cleaned whole chicken, ready to cook.',
   },
   {
@@ -93,7 +96,7 @@ export const products: Product[] = [
     price: 7200,
     unit: 'kg',
     // emoji: '🐟',
-    image: `${import.meta.env.BASE_URL}z1.png`,
+    image: `${BASE}z1.png`,
     description: 'Freshly supplied catfish, cleaned on request.',
   },
   {
@@ -103,7 +106,7 @@ export const products: Product[] = [
     price: 1600,
     unit: 'pack',
     // emoji: '🥕',
-    image: `${import.meta.env.BASE_URL}w1.jpg`,
+    image: `${BASE}w1.jpg`,
     description: 'Crunchy carrots for soups, salads and snacks.',
   },
   {
@@ -113,7 +116,7 @@ export const products: Product[] = [
     price: 1200,
     unit: 'piece',
     // emoji: '🥑',
-    image: `${import.meta.env.BASE_URL}p3.png`,
+    image: `${BASE}p3.png`,
     description: 'Creamy avocado selected at the right ripeness.',
   },
   {
@@ -123,9 +126,18 @@ export const products: Product[] = [
     price: 18500,
     unit: 'box',
     // emoji: '📦',
-    image: `${import.meta.env.BASE_URL}j1.jpg`,
+    image: `${BASE}j1.jpg`,
     description: 'A convenient assortment of everyday kitchen essentials.',
   },
 ];
 
 export const categories = [...new Set(products.map((p) => p.category))];
+
+// Put each category's image in /public and set its filename (or a full URL) here.
+export const categoryImages: Record<string, string> = {
+  Parfait: `${BASE}b1.png`,
+  Yogurt: `${BASE}p1.png`,
+  'Banana bread': `${BASE}p2.png`,
+  Pancake: `${BASE}y1.png`,
+  Zobo: `${BASE}z1.png`,
+};
